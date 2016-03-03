@@ -13,7 +13,7 @@ rule_header = re.compile(
     r"(?P<protocol>tcp|udp|icmp|ip)\s*"                                     # Protocol
     r"(?P<srcaddress>[^\s]*)\s*"      # Source address (<!>1-255.1-255.1-255.1-255/0-32 | lists of ips ex. [192.1.1.1/5,10.254.32.1/5]
     #r"(?P<srcport>[^\s]*)\s*"         # Source port (1-65535 | (1-65535|):(1-65535|) | any)
-    r"(?P<srcport>any|[0-9]{1,4}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5])\s*"         # Source ports (1-65535 | (1-65535|):(1-65535|) | any)
+    r"(?P<srcport>any|\!?[0-9]{1,4}|\!?[1-5][0-9]{4}|\!?6[0-4][0-9]{3}|\!?65[0-4][0-9]{2}|\!?655[0-2][0-9]|\!?6553[0-5])\s*"         # Source ports (1-65535 | (1-65535|):(1-65535|) | any)
     r"(?P<direction>[-><]+)\s*"     # Direction <- | <> | ->
     r"(?P<dstaddress>[^\s]*)\s*"      # Destination address
     r"(?P<dstport>[^\s]*)\s*"         # Destination port (1-65535 | (1-65535|):(1-65535|) | any)

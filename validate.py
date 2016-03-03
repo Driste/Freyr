@@ -24,6 +24,7 @@ class Rule(dict):
                 self[option] = header[option]
         else:
             self['valid'] = False
+            self['error'] = "header"
     
     def generalOptions(self):
         pass
@@ -50,9 +51,9 @@ if __name__ == "__main__":
     
     myFile = open("rules/community.rules")
     
-    rule = 'alert tcp any any -> any any (content:"|00 01 86 a5|"; msg:"This is the test rule.";)'
+    rule = 'alert tcp any !65535 -> any any (content:"|00 01 86 a5|"; msg:"This is the test rule.";)'
     
-    print Rule(rule).valid
+    print Rule(rule)
     
     '''
     i = 0
