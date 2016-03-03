@@ -18,7 +18,6 @@ class Rule(dict):
     
     def header(self):
         ''' maps the header options to self'''
-        
         if re.match(regex.rule_header, self['rawRule']):
             header = re.match(regex.rule_header, self['rawRule']).groupdict()
             for option in header:
@@ -37,14 +36,29 @@ class Rule(dict):
     
     def postDetection(self):
         pass
+    
+    def checkOptions(self):
+        ''' Make sure all the options are valid '''
+        
+        pass
+    
+    def checkGutters(self):
+        ''' Check between all the options to make sure there is nothing unknown '''
+        pass
 
 if __name__ == "__main__":
     
     myFile = open("rules/community.rules")
     
+    rule = 'alert tcp any any -> any any (content:"|00 01 86 a5|"; msg:"This is the test rule.";)'
+    
+    print Rule(rule).valid
+    
+    '''
     i = 0
     rule = {}
     for line in myFile:
         rule[i] = Rule(line)
         print rule[i].valid
         i += 1
+    '''
