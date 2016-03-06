@@ -51,15 +51,15 @@ if __name__ == "__main__":
     
     myFile = open("rules/community.rules")
     
-    rule = 'alert tcp any !65535:65535 -> !45:56 any (content:"|00 01 86 a5|"; msg:"This is the test rule.";)'
+    rule = 'alert tcp 192.168.100.40 $HOME_NET -> any !45:56 (content:"|00 01 86 a5|"; msg:"This is the test rule.";)'
     
     print Rule(rule)
     
-    
+    '''
     i = 0
     rule = {}
     for line in myFile:
         rule[i] = Rule(line)
         print rule[i].srcport
         i += 1
-    
+    '''
