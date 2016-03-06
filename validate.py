@@ -51,7 +51,7 @@ if __name__ == "__main__":
     
     myFile = open("rules/community.rules")
     
-    rule = 'alert tcp 192.168.100.40 $HOME_NET -> $H9 !45:56 (content:"|00 01 86 a5|"; msg:"This is the test rule.";)'
+    rule = 'alert tcp 192.168.100.40 65535 -> $HOME_NET !45:56 (content:"|00 01 86 a5|"; msg:"This is the test rule.";)'
     
     print Rule(rule)
     
