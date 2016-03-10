@@ -16,6 +16,14 @@ class Rule(dict):
         ''' Get any value from the dict '''
         return self[i]
     
+    def __str__(self):
+        # Return the original rule.
+        return self['rawRule']
+    
+    def __len__(self):
+        # Return the amount of options minus [error, valid, rawRule]
+        return len(self.keys()) - 3
+    
     def header(self):
         ''' maps the header options to self'''
         if re.match(regex.rule_header, self['rawRule']):
@@ -52,14 +60,16 @@ if __name__ == "__main__":
     myFile = open("rules/community.rules")
     
     rule = 'alert tcp 192.168.100.40 65535 -> $HOME_NET !45:56 (content:"|00 01 86 a5|"; msg:"This is the test rule.";)'
-    
-    print Rule(rule)
+    r = Rule(rule)
+    print r.srcaddress
     
     '''
     i = 0
     rule = {}
     for line in myFile:
         rule[i] = Rule(line)
-        print rule[i].srcport
+        if not rule[i].valid:
+            print rule[i].rawRule
         i += 1
     '''
+    
